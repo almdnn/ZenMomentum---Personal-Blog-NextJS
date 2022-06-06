@@ -1,10 +1,18 @@
 import React from "react";
+import { useRouter } from 'next/router';
+
 import Categories from "../../components/Categories";
 import PostWidget from "../../components/PostWidget";
 import PostCard from "../../components/PostCard"
+import Loader from "../../components/Loader"
 import { getCategoryPost, getCategories } from "../../services/index.js";
 
 const CategoryPost = ({posts}) => {
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <Loader />;
+  }
 
     return (
       <div className="container mx-auto px-10 mb-8">
